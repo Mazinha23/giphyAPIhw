@@ -1,0 +1,63 @@
+<html>
+<head>
+	<title>Dogs!</title>
+	<style type="text/css">
+		button, div, form, input {
+			margin: 10px;
+		}
+	</style>
+</head>
+<body>
+
+<div class="container">
+  <h1>Puppy Giphy Search</h1>
+
+  <div id="buttonsView"></div>
+
+  <form id="puppy-form">
+    <label for="puppy-input">Puppies, pick one!</label>
+    <input type="text" id="puppy-input"><br>
+    
+    <input id="addPuppy" type="submit" value="Puppies, pick one!">
+  </form>
+</div>
+  <div id="puppiesView"></div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script type="text/javascript">
+	var topics = ['Labradors', 'Akita', 'Great Dane', 'Dalmation', 'All puppies']; 
+	function puppyInfo(){  
+        $('#puppyView').empty();   
+        // to empty input box  
+		var puppy = $(this).attr('data-name');
+		
+        var queryURL = "https://api.giphy.com/v1/gifs/trending?api_key=dc6zaTOxFJmzC"
+        
+        // don't know how to get specific gifs - pulling from previous class work - still doesnt work :( 
+
+		$.ajax({url: queryURL, method: 'GET'}) 
+	}
+     
+    
+    // render buttons to stop
+	function renderButtons(){ 	
+		$('#buttonView').empty();
+		// Loop through arrays**
+		for (var i = 0; i < topics.length; i++){
+		    var a = $('<button>') // --> creates buttons
+		    $('#buttonsView').append(a); // Added the button to the HTML
+		}
+	}
+	// make buttons work when pushed
+	$('#addpuppies').on('click', function(){
+        var puppies = $('#puppies-input').val();
+		puppies.push(topics);
+				renderButtons()
+		
+	})
+
+</script>
+
+
+</body>
+</html>
